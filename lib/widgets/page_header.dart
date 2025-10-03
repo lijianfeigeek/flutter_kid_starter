@@ -7,10 +7,10 @@ class PageHeader extends StatelessWidget {
   final Color secondaryColor;
 
   const PageHeader({
-    Key key,
-    this.title,
-    this.primaryColor,
-    this.secondaryColor,
+    Key? key,
+    required this.title,
+    required this.primaryColor,
+    required this.secondaryColor,
   }) : super(key: key);
 
   @override

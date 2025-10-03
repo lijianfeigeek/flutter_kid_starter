@@ -10,31 +10,31 @@ class HomeScreen extends StatelessWidget {
   final List<Widget> _categories = [
     CategoryCard(
       title: 'Colors',
-      primaryColor: Colors.orangeAccent[100],
-      secondaryColor: Colors.orange,
+      primaryColor: Colors.orange,
+      secondaryColor: Colors.deepOrange,
       screen: ColorsScreen(
         title: 'Colors',
-        primaryColor: Colors.orangeAccent[100],
+        primaryColor: Colors.orangeAccent,
         secondaryColor: Colors.orange,
       ),
     ),
     CategoryCard(
       title: '123',
-      primaryColor: Colors.greenAccent[100],
-      secondaryColor: Colors.green,
+      primaryColor: Colors.green,
+      secondaryColor: Colors.lightGreen,
       screen: CountingScreen(
         title: '123',
-        primaryColor: Colors.greenAccent[100],
+        primaryColor: Colors.greenAccent,
         secondaryColor: Colors.green,
       ),
     ),
     CategoryCard(
       title: 'ABC',
-      primaryColor: Colors.purpleAccent[100],
-      secondaryColor: Colors.purple,
+      primaryColor: Colors.purple,
+      secondaryColor: Colors.deepPurple,
       screen: AlphabetsScreen(
         title: 'ABC',
-        primaryColor: Colors.purpleAccent[100],
+        primaryColor: Colors.purpleAccent,
         secondaryColor: Colors.purple,
       ),
     ),
@@ -50,11 +50,11 @@ class HomeScreen extends StatelessWidget {
     ),
     CategoryCard(
       title: 'Shapes',
-      primaryColor: Colors.redAccent[100],
-      secondaryColor: Colors.red,
+      primaryColor: Colors.red,
+      secondaryColor: Colors.redAccent,
       screen: ShapesScreen(
         title: 'Shapes',
-        primaryColor: Colors.redAccent[100],
+        primaryColor: Colors.redAccent,
         secondaryColor: Colors.red,
       ),
     ),

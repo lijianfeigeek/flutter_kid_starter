@@ -3,7 +3,7 @@ import 'dart:async' show Future;
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_sound/flutter_sound_player.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 import 'package:kidstarter/entities/alphabet.dart';
 import 'package:kidstarter/helper.dart';
 import 'package:kidstarter/widgets/page_header.dart';
@@ -14,7 +14,7 @@ Future<List<AlphabetEntity>> _fetchAlphabets() async {
   final jsonParsed = json.decode(jsonString);
 
   return jsonParsed
-      .map<AlphabetEntity>((json) => new AlphabetEntity.fromJson(json))
+      .map<AlphabetEntity>((json) => AlphabetEntity.fromJson(json))
       .toList();
 }
 
@@ -24,9 +24,9 @@ class AlphabetsScreen extends StatefulWidget {
   final Color secondaryColor;
 
   AlphabetsScreen({
-    this.title,
-    this.primaryColor,
-    this.secondaryColor,
+    required this.title,
+    required this.primaryColor,
+    required this.secondaryColor,
   });
 
   @override
@@ -34,22 +34,23 @@ class AlphabetsScreen extends StatefulWidget {
 }
 
 class _AlphabetsScreenState extends State<AlphabetsScreen> {
-  Future<List<AlphabetEntity>> _alphabetsFuture;
-  FlutterSoundPlayer _soundPlayer;
-  int _selectedIndex;
+  late Future<List<AlphabetEntity>> _alphabetsFuture;
+  FlutterSoundPlayer? _soundPlayer;
+  int _selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
 
     _alphabetsFuture = _fetchAlphabets();
-    _soundPlayer = new FlutterSoundPlayer();
+    _soundPlayer = FlutterSoundPlayer();
+    _soundPlayer!.openPlayer();
   }
 
   void _playAudio(String audioPath) async {
     // Load a local audio file and get it as a buffer
     Uint8List buffer = (await rootBundle.load(audioPath)).buffer.asUint8List();
-    await _soundPlayer.startPlayerFromBuffer(buffer);
+    await _soundPlayer!.startPlayer(fromDataBuffer: buffer);
   }
 
   @override
@@ -75,7 +76,7 @@ class _AlphabetsScreenState extends State<AlphabetsScreen> {
                         crossAxisCount: 2,
                         crossAxisSpacing: 20.0,
                       ),
-                      itemCount: snapshot.data.length,
+                      itemCount: (snapshot.data as List<AlphabetEntity>).length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: index % 2 == 0
@@ -83,13 +84,13 @@ class _AlphabetsScreenState extends State<AlphabetsScreen> {
                               : const EdgeInsets.only(bottom: 20, right: 20),
                           child: TileCard(
                             isActive: _selectedIndex == index,
-                            title: snapshot.data[index].text,
+                            title: (snapshot.data as List<AlphabetEntity>)[index].text,
                             textColor: getIndexColor(index),
                             onTap: () {
                               setState(() {
                                 _selectedIndex = index;
                               });
-                              _playAudio(snapshot.data[index].audio);
+                              _playAudio((snapshot.data as List<AlphabetEntity>)[index].audio);
                             },
                           ),
                         );
@@ -111,7 +112,7 @@ class _AlphabetsScreenState extends State<AlphabetsScreen> {
 
   @override
   void dispose() {
-    _soundPlayer.release();
+    _soundPlayer?.closePlayer();
     super.dispose();
   }
 }

@@ -8,9 +8,9 @@ class StoriesScreen extends StatelessWidget {
   final Color secondaryColor;
 
   const StoriesScreen({
-    this.title,
-    this.primaryColor,
-    this.secondaryColor,
+    required this.title,
+    required this.primaryColor,
+    required this.secondaryColor,
   });
 
   @override

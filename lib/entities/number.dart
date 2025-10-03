@@ -3,8 +3,8 @@ class NumberEntity {
   String audio;
 
   NumberEntity({
-    this.text,
-    this.audio,
+    required this.text,
+    required this.audio,
   });
 
   factory NumberEntity.fromJson(Map<String, dynamic> parsedJson) {

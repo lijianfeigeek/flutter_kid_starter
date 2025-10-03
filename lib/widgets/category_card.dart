@@ -7,12 +7,12 @@ class CategoryCard extends StatelessWidget {
   final Color secondaryColor;
   final Widget screen;
 
-  CategoryCard({
-    Key key,
-    @required this.title,
-    @required this.primaryColor,
-    @required this.secondaryColor,
-    @required this.screen,
+  const CategoryCard({
+    Key? key,
+    required this.title,
+    required this.primaryColor,
+    required this.secondaryColor,
+    required this.screen,
   }) : super(key: key);
 
   void _navigate(BuildContext context, Widget screen) {
@@ -37,7 +37,7 @@ class CategoryCard extends StatelessWidget {
           BoxShadow(
             offset: Offset(0, 4),
             blurRadius: 10,
-            color: Colors.grey[900].withOpacity(0.2),
+            color: Colors.grey.withOpacity(0.2),
           ),
         ],
         gradient: LinearGradient(

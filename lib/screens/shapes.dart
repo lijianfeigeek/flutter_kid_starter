@@ -8,9 +8,9 @@ class ShapesScreen extends StatelessWidget {
   final Color secondaryColor;
 
   const ShapesScreen({
-    this.title,
-    this.primaryColor,
-    this.secondaryColor,
+    required this.title,
+    required this.primaryColor,
+    required this.secondaryColor,
   });
 
   @override

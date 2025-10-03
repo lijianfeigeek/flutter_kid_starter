@@ -11,14 +11,14 @@ class TileCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const TileCard({
-    Key key,
+    Key? key,
     this.isActive = false,
-    this.title,
+    required this.title,
     this.textColor = kTitleTextColor,
     this.backgroundColor = Colors.white,
     this.fontSizeBase = 130,
     this.fontSizeActive = 180,
-    this.onTap,
+    required this.onTap,
   }) : super(key: key);
 
   @override

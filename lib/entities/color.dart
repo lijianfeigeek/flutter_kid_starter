@@ -4,9 +4,9 @@ class ColorEntity {
   String audio;
 
   ColorEntity({
-    this.code,
-    this.name,
-    this.audio,
+    required this.code,
+    required this.name,
+    required this.audio,
   });
 
   factory ColorEntity.fromJson(Map<String, dynamic> parsedJson) {
